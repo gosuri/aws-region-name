@@ -11,6 +11,15 @@ Returns the region name for the region
       -h, --help     Display this help message
       -v, --version  Display the version number
 
+## Installation
+
+Run the below with the latest [version](https://github.com/gosuri/aws-region-name/releases)
+
+    version=0.1.1
+    curl -sL https://github.com/gosuri/aws-region-name/archive/v${version}.tar.gz | tar xz
+    cd aws-region-name-${version}
+    make install
+
 ## Licence
 
 The MIT License (MIT)
