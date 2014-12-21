@@ -1,7 +1,7 @@
-SHELL		= /bin/sh
+SHELL   = /bin/sh
 PREFIX	= /usr/local
-SOURCES	= friendly-region.bash
-PROGRAM = friendly-region
+SOURCES	= aws-region-name.bash
+PROGRAM = aws-region-name
 
 execdir=$(PREFIX)/bin
 
@@ -23,6 +23,16 @@ run: all
 
 uninstall:
 	rm -f "$(execdir)/$(PROGRAM)"
+
+package: $(PROGRAM)
+	mkdir -p ./pkg
+	cp $(PROGRAM) ./pkg/$(PROGRAM)-$(shell $(PROGRAM) --version)
+
+publish: package
+	git add ./pkg
+	git commit -m "[pkg] v$(shell $(PROGRAM) --version)"
+	git tag v$(shell $(PROGRAM) --version)
+	git push --tags
 
 clean:
 	rm -f $(PROGRAM)

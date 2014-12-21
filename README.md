@@ -1,7 +1,15 @@
-# friendly-region
+# aws-region-name
 
-Simple tool that returns a friendly region name on an ec2 instance
+Returns the region name for the region
 
+## Usage
+
+    Usage: aws-region-name [-h] [-v] <region>
+
+      <region> is the aws region. Example: us-west-1
+
+      -h, --help     Display this help message
+      -v, --version  Display the version number
 
 ## Licence
 
