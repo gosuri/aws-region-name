@@ -26,12 +26,12 @@ uninstall:
 
 package: $(PROGRAM)
 	mkdir -p ./pkg
-	cp $(PROGRAM) ./pkg/$(PROGRAM)-$(shell $(PROGRAM) --version)
+	cp $(PROGRAM) ./pkg/$(PROGRAM)-$(shell ./$(PROGRAM) --version)
 
 publish: package
 	git add ./pkg
-	git commit -m "[pkg] v$(shell $(PROGRAM) --version)"
-	git tag v$(shell $(PROGRAM) --version)
+	git commit -m "[pkg] v$(shell ./$(PROGRAM) --version)"
+	git tag v$(shell ./$(PROGRAM) --version)
 	git push --tags
 
 clean:
