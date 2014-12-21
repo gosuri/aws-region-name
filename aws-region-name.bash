@@ -54,16 +54,18 @@ function run() {
 }
 
 function version() {
-  echo "0.1.1"
+  echo "0.1.2"
 }
 
 function help() {
   echo "${PROGRAM} $(version)"
   echo
-  echo "Usage: ${PROGRAM} [-h] [-v] <region>"
+  echo "Usage: ${PROGRAM} [-h] [-v] [-r] <region>"
   echo
-  echo "  <region> is the aws region. Example: us-west-1"
+  echo "  <region> aws region, will auto-detect when running on an ec2 instance."
+  echo "           example: us-west-1"
   echo
+  echo "  -r, --region   Display only the current aws region"
   echo "  -h, --help     Display this help message"
   echo "  -v, --version  Display the version number"
 }
@@ -74,6 +76,11 @@ case "${1}" in
     ;;
   -v|--version)
     version
+    exit 0
+    ;;
+  -r|--region)
+    get_current_region
+    exit 0
     ;;
   *)
     run "${1}"
