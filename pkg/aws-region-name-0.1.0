@@ -5,7 +5,7 @@ PROGRAM=${0##*/}
 
 function get_current_region() {
   local az=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
-  [ -n "${az}" ] && $(echo "${az}" | grep -Po "(us|sa|eu|ap)-(north|south)?(east|west)?-[0-9]+")
+  [ -n "${az}" ] && echo "${az}" | grep -Po "(us|sa|eu|ap)-(north|south)?(east|west)?-[0-9]+"
 }
 
 function run() {
@@ -54,7 +54,7 @@ function run() {
 }
 
 function version() {
-  echo "0.1.0"
+  echo "0.1.1"
 }
 
 function help() {
