@@ -1,25 +1,39 @@
 # aws-region-name
 
-Returns the region name for the region
+Displays the aws region name based on the availabilty zone of the ec2 instance
 
 ## Usage
-    Usage: aws-region-name [-h] [-v] [-r] <region>
+    aws-region-name [-h] [-v] [-r] <region>
 
-      <region> aws region, will auto-detect when running on an ec2 instance.
-               example: us-west-1
+    <region> aws region, will auto-detect when running on an ec2 instance.
+             example: us-west-1
 
-      -r, --region   Display only the current aws region
-      -h, --help     Display this help message
-      -v, --version  Display the version number
+    -r, --region   Display only the current aws region
+    -h, --help     Display this help message
+    -v, --version  Display the version number
 
-## Installation
+### Examples
 
-Run the below with the latest [version](https://github.com/gosuri/aws-region-name/releases)
+Display region name for an instance running in us-east-1a
 
-    version=0.1.2
-    curl -sL https://github.com/gosuri/aws-region-name/archive/v${version}.tar.gz | tar xz
-    cd aws-region-name-${version}
-    make install
+    $ aws-region-name
+    virginia
+
+Display region name for an instance running in us-west-1b
+
+    $ aws-region-name
+    california
+
+Display just the region for a instance running in us-west-1b
+
+    $ aws-region-name --region
+    us-west-b
+
+## Installing aws-region-name from source
+    
+    $ git clone https://github.com/gosuri/aws-region-name.git
+    $ cd aws-region-name
+    $ make install
 
 ## Licence
 
@@ -44,3 +58,4 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE
+

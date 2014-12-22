@@ -54,7 +54,7 @@ function run() {
 }
 
 function version() {
-  echo "0.1.2"
+  echo "0.1.3"
 }
 
 function help() {

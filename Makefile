@@ -3,6 +3,7 @@ PREFIX	= /usr/local
 SOURCES	= aws-region-name.bash
 PROGRAM = aws-region-name
 
+dirty=$(shell git diff --shortstat)
 execdir=$(PREFIX)/bin
 
 all: $(PROGRAM)
@@ -24,17 +25,17 @@ run: all
 uninstall:
 	rm -f "$(execdir)/$(PROGRAM)"
 
-package: $(PROGRAM)
-	mkdir -p ./pkg
-	cp $(PROGRAM) ./pkg/$(PROGRAM)-$(shell ./$(PROGRAM) --version)
-
-publish: package
-	git add ./pkg
-	git commit -m "[pkg] v$(shell ./$(PROGRAM) --version)"
+publish: $(PROGRAM)
+ifeq ($(dirty),)
 	git tag v$(shell ./$(PROGRAM) --version)
 	git push --tags
+else
+	@echo "Cannot publish: You have unstaged changes or index contains uncommitted changes" >&2
+	@echo "Please commit or stash them" >&2
+	@exit 1
+endif
 
 clean:
 	rm -f $(PROGRAM)
 
-.PHONY: run install uninstall clean
+.PHONY: publish run install uninstall clean
